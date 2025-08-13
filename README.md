@@ -1,12 +1,58 @@
-# React + Vite
+# Cryptocurrency Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive and feature-rich cryptocurrency tracking app built with **Vite + React**. It uses the **CoinGecko API** to display live crypto data with sorting, filtering, pagination, favorites, and detailed pop-up charts.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+* **Live Cryptocurrency Data** — Fetched from the [CoinGecko API](https://www.coingecko.com/en/api)
+* **Tailwind CSS Styling** — Clean, modern, and responsive UI
+* **Search & Filter** — Find cryptocurrencies instantly
+* **Pagination** — Navigate between pages with previous/next controls (disabled when at first/last page)
+* **Sorting** — Sort prices in ascending or descending order with active/inactive button states
+* **Detailed Charts** — View interactive charts and extra details via pop-up (using React DOM Portal & ApexCharts)
+* **Favorites** — Save favorite currencies to **localStorage** and view them in a dedicated table
+* **Error Handling** — Handles API errors gracefully
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📦 Tech Stack
+
+* **Frontend:** React, Vite
+* **Styling:** Tailwind CSS
+* **Code Formatting:** Prettier
+* **Charts:** ApexCharts
+* **API:** CoinGecko
+* **State & Logic:** useState, Fetch API, localStorage
+* **Deployment:** GitHub Pages (optional)
+
+---
+
+## 🌐 Live Demo
+
+[**Click here to view the live app**](https://IFatima163.github.io/Cryptocurrency-Tracker)
+
+---
+
+## 📌 Development Notes
+
+1. Created Vite project & Git repo
+2. Installed Tailwind CSS & Prettier
+3. Built home page, search bar, and crypto table
+4. Integrated CoinGecko API to display:
+
+   * Name
+   * Image
+   * Price
+   * 24h fluctuation
+5. Implemented:
+
+   * **Pagination** with prev/next button states
+   * **Search filter** for table
+   * **Sorting** with asc/desc buttons & active states
+6. Added:
+
+   * Pop-up with chart & currency details (React Portal + ApexCharts)
+   * Favorite button & localStorage logic
+   * Separate favorites table at top

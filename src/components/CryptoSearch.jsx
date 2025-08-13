@@ -16,7 +16,10 @@ const CryptoSearch = ({searchValue, setSearchValue, setPage, sortAsc, setSortAsc
       <button 
         className="border-[2px] border-[#78b6ef] bg-[#164a79] rounded-[16px] h-10 px-3 
           text-white text-base flex items-center gap-x-4 cursor-pointer"
-        onClick={() => setSortAsc(!sortAsc)}
+        onClick={() => {
+          setSortAsc(!sortAsc)
+          setPage(1)
+        }}
       >
         Sort: {
           !sortAsc ? 

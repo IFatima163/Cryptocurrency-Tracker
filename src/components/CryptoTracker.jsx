@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from "react";
 import CryptoSearch from "./CryptoSearch";
 import CryptoTable from "./CryptoTable";
 import Pagination from "./Pagination";
+import useFavorites from "./useFavorites";
+import CryptoItem from "./CryptoItem";
 const PER_PAGE = 10
 
 const CryptoTracker = () => {
@@ -11,11 +13,13 @@ const CryptoTracker = () => {
   const [coins, setCoins] = useState([])
   const [searchValue, setSearchValue] = useState("");
   const [sortAsc, setSortAsc] = useState(false)
+  const {favorites, toggleFavorites} = useFavorites()
 
-  const filtered = useMemo(() => {
-    return coins.filter((i) => i.name.toLowerCase().includes(searchValue.toLowerCase()))
-  }, [coins, searchValue])
-  const paginated = filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE)
+  const filtered = coins.filter((i) => i.name.toLowerCase().includes(searchValue.toLowerCase()))
+  const sorted = [...filtered].sort((a, b) => 
+    sortAsc ? a.current_price - b.current_price : b.current_price - a.current_price  
+  )
+  const paginated = sorted.slice((page - 1) * PER_PAGE, page * PER_PAGE)
   const totalPages = Math.ceil(filtered?.length / PER_PAGE)
 
   useEffect(() => {
@@ -42,8 +46,18 @@ const CryptoTracker = () => {
         <h1 className="text-white text-4xl font-bold">
           Cryptocurrency Tracker
         </h1>
+        <div>
+          <h2 className="text-white text-xl font-bold mt-2">
+            Your Favorites
+          </h2>
+          {favorites ? <div>
+            {coins.filter((i) => favorites.includes(i.id)).map((coin) => (
+              <CryptoItem key={coin.id} coin={coin} favorites={favorites} toggleFavorites={toggleFavorites}/>
+            ))}
+          </div> : null}          
+        </div>
         <CryptoSearch searchValue={searchValue} setSearchValue={setSearchValue} setPage={setPage} sortAsc={sortAsc} setSortAsc={setSortAsc}/>
-        <CryptoTable loading={loading} error={error} coins={paginated}/>
+        <CryptoTable loading={loading} error={error} coins={paginated} favorites={favorites} toggleFavorites={toggleFavorites}/>
         <Pagination page={page} setPage={setPage} totalPages={totalPages}/>
       </div>
     </div>
